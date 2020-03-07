@@ -39,6 +39,8 @@ namespace BOSS.Model.Models
         public string CreatedBy { set; get; }
         public bool PaymentStatus { set; get; } = false;
         public bool Status { set; get; } = true;
+        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+
         
     }
 }

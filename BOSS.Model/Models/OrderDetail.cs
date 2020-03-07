@@ -11,10 +11,13 @@ namespace BOSS.Model.Models
     [Table("OrderDetails")]
     public class OrderDetail
     {
-        [Key]
+        [ForeignKey("Order")]
         public int OrderId { set; get; }
-        [Key]
+        public virtual Order Order { set; get; }
+
+        [ForeignKey("Product")]
         public int ProductId { set; get; }
+        public virtual Product Product { set; get; }
         public int Quantity { set; get; }
         public decimal Price { set; get; }
     }

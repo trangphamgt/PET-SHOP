@@ -18,7 +18,9 @@ namespace BOSS.Model.Models
         public string Name { set; get; }
         public string URL { set; get; }
         public int? DisplayOrder {set;get;}
+        [ForeignKey("MenuGroup")]
         public int GroupID { set; get; }
+        public virtual MenuGroup MenuGroup { set; get; }
         public bool Status { set; get; }
 
     }

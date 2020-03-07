@@ -14,7 +14,7 @@ namespace BOSS.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int Id { set; get; }
         [MaxLength(255)]
         [Column(TypeName = "nvarchar")]
         public string Name { set; get; }

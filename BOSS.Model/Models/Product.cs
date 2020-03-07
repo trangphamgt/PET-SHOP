@@ -19,8 +19,7 @@ namespace BOSS.Model.Models
         public string Name { set; get; }
         [MaxLength(255)]
         public string Alias { set; get; }
-        [Required]
-        public int CategoryId { set; get; }
+        
         public decimal? Price { set; get; }
         public decimal? PromotionPrice { set; get; }
         public int? Warranty { set; get; } = 6;
@@ -31,5 +30,10 @@ namespace BOSS.Model.Models
         public int? DisplayOrder { set; get; }
         public string Image { set; get; }
         public bool HomeFlag { set; get; } = true;
+        [Required]
+        [ForeignKey("ProductCategory")]
+        public int CategoryId { set; get; }
+        public virtual ProductCategory ProductCategory { set; get; }
+        public virtual OrderDetail OrderDetail { set; get; }
     }
 }

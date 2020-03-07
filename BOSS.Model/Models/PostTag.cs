@@ -11,9 +11,11 @@ namespace BOSS.Model.Models
     [Table("PostTags")]
     public class PostTag
     {
-        [Key]
+        [ForeignKey("Post")]
         public int PostId { set; get; }
-        [Key]
+        public virtual Post Post { set; get; }
+        [ForeignKey("Tag")]
         public int TagId { set; get; }
+        public virtual Tag Tag { set; get; }
     }
 }

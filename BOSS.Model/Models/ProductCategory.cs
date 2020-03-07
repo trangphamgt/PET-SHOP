@@ -14,7 +14,7 @@ namespace BOSS.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int Id { set; get; }
         [MaxLength(255)]
         [Column(TypeName = "nvarchar")]
         public string Name { set; get; }
@@ -27,6 +27,6 @@ namespace BOSS.Model.Models
         public int? DisplayOrder { set; get; }
         public string Image { set; get; }
         public bool HomeFlag { set; get; } = true;
-
+        public virtual IEnumerable<Product> Products { set; get; }
     }
 }

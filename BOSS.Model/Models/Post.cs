@@ -34,5 +34,6 @@ namespace BOSS.Model.Models
         public bool HomeFlag { set; get; } = true;
         public bool HotFlag { set; get; } = false;
         public virtual IEnumerable<PostTag> PostTags { set; get; }
+        
     }
 }

@@ -8,12 +8,12 @@ namespace BOSS.Model.Abstract
 {
     public abstract class Auditable : IAuditable
     {
-        public DateTime CreatedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int CreatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime? UpdatedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int UpdatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string MetaKeyword { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string MetaDescription { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool Status { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DateTime? CreatedDate { set; get; }
+        public int? CreatedBy { set; get; }
+        public DateTime? UpdatedDate { set; get; }
+        public int? UpdatedBy { set; get; }
+        public string MetaKeyword { set; get; }
+        public string MetaDescription { set; get; }
+        public int? Status { set; get; }
     }
 }

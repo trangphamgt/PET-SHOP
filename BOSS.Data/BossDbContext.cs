@@ -8,7 +8,7 @@ namespace BOSS.Data
     public class BossDbContext : DbContext
     {
         public BossDbContext()
-            : base("BossDbConnecion")
+            : base("BossDB")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -24,7 +24,8 @@ namespace BOSS.Data
         public virtual DbSet<PostTag> PostTags { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<OrderDetail> OrderDetails { set; get; }
-
+        public virtual DbSet<Comment> Comments { set; get; }
+        public virtual DbSet<Error> Errors { set; get; }
 
         public static BossDbContext Create()
         {

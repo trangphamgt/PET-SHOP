@@ -34,6 +34,5 @@ namespace BOSS.Model.Models
         [ForeignKey("ProductCategory")]
         public int CategoryId { set; get; }
         public virtual ProductCategory ProductCategory { set; get; }
-        public virtual OrderDetail OrderDetail { set; get; }
     }
 }

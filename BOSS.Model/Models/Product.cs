@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BOSS.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 namespace BOSS.Model.Models
 {
     [Table("Products")]
-    public class Product
+    public class Product : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int Id { set; get; }
         [MaxLength(255)]
         [Column(TypeName = "nvarchar")]
         public string Name { set; get; }

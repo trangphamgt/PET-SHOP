@@ -18,9 +18,9 @@ namespace BOSS.Service
         Post GetById(int id);
         void Update(Post post);
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(int pageIndex, int page, out int totalRow);
-        IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, out int totalRow);
-        IEnumerable<Post> GetAllByCategoryPost(int postCategory,  int pageIndex, int page, out int totalRow);
+        IEnumerable<Post> GetAllPaging(int pageIndex, int page, int totalRow);
+        IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, int totalRow);
+        IEnumerable<Post> GetAllByCategoryPost(int postCategory,  int pageIndex, int page,int totalRow);
         void SaveChanges();
 
 
@@ -58,21 +58,21 @@ namespace BOSS.Service
             return _postRepository.GetAll();
         }
 
-        public IEnumerable<Post> GetAllByCategoryPost(int postCategory, int pageIndex, int page, out int totalRow)
+        public IEnumerable<Post> GetAllByCategoryPost(int postCategory, int pageIndex, int page, int totalRow)
         {
             return _postRepository.GetMultiPaging(x => x.CategoryId == postCategory, out totalRow, pageIndex, page, new string[] { "PostTags" });
         }
 
-        public IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, out int totalRow)
+        public IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, int totalRow)
         {
-            return _postRepository.GetAllByTag(tag, pageIndex, page, out totalRow);
+            return _postRepository.GetAllByTag(tag, pageIndex, page,out totalRow);
         }
        
 
 
-        public IEnumerable<Post> GetAllPaging(int pageIndex, int page, out int totalRow)
+        public IEnumerable<Post> GetAllPaging(int pageIndex, int page, int totalRow)
         {
-            return _postRepository.GetMultiPaging(x => x.Status!=0, out totalRow, pageIndex, page);
+            return _postRepository.GetMultiPaging(x => x.Status!=0,out totalRow, pageIndex, page);
 
         }
 

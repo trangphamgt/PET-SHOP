@@ -101,15 +101,15 @@ namespace BossShop.Web.Controllers
                 return response;
             });
         }
-        public HttpRequestMessage GetAllPostPaging(HttpRequestMessage request, int pageIndex, int pageSize)
+        public HttpResponseMessage GetAllPostPaging(HttpRequestMessage request, int pageIndex, int pageSize, int totalRow)
         {
-            int totalRow = 0;
 
             return CreateHttpResponse(request, () =>
             {
+                
                 HttpResponseMessage response = null;
-                IEnumerable<Post> lst = _postService.GetAllPaging(pageIndex, pageSize, totalRow);
-                response = request.CreateResponse(HttpStatusCode.OK);
+                IEnumerable<Post> lst = _postService.GetAllPaging(pageIndex, pageSize,totalRow);
+                response = request.CreateResponse(HttpStatusCode.OK, lst);
                 return response;
             });
         }

@@ -1,6 +1,8 @@
-﻿using BOSS.Model.Models;
+﻿using AutoMapper;
+using BOSS.Model.Models;
 using BOSS.Service;
 using BossShop.Web.Infrastructure.Core;
+using BossShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +45,12 @@ namespace BossShop.Web.Controllers
         {
             return CreateHttpResponse(request, () =>
             {
-                HttpResponseMessage response = null;
-                IEnumerable<Post> _post = _postService.GetAll().ToList();
-                response = request.CreateResponse(HttpStatusCode.Created, _post, Configuration.Formatters.JsonFormatter);
+                List<Post> list = _postService.GetAll().ToList();
+
+                List<PostViewModel> listPostVm = Mapper.Map<List<PostViewModel>>(list);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostVm);
+
                 return response;
             });
         }
@@ -56,7 +61,8 @@ namespace BossShop.Web.Controllers
             {
                 HttpResponseMessage response = null;
                 Post _post = _postService.GetById(id);
-                response = request.CreateResponse(HttpStatusCode.Created, _post, Configuration.Formatters.JsonFormatter);
+                PostViewModel _postVm = Mapper.Map<PostViewModel>(_post);
+                response = request.CreateResponse(HttpStatusCode.Created, _postVm, Configuration.Formatters.JsonFormatter);
                 return response;
             });
         }
@@ -92,7 +98,7 @@ namespace BossShop.Web.Controllers
                 }
                 else
                 {
-                    _postService.Delete(id);
+                    var post = _postService.Delete(id);
                     _postService.SaveChanges();
 
                     response = request.CreateResponse(HttpStatusCode.OK);

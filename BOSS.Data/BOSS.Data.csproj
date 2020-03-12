@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202003101741319_updateAutial.Designer.cs">
       <DependentUpon>202003101741319_updateAutial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003121631447_aaa.cs" />
+    <Compile Include="Migrations\202003121631447_aaa.Designer.cs">
+      <DependentUpon>202003121631447_aaa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003101741319_updateAutial.resx">
       <DependentUpon>202003101741319_updateAutial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121631447_aaa.resx">
+      <DependentUpon>202003121631447_aaa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

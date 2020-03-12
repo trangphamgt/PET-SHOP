@@ -9,7 +9,7 @@ namespace BossShop.Web.Mappings
     {
         public static void Configure()
         {
-            var config = new MapperConfiguration(cfg =>
+            Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Post, PostViewModel>();
                 cfg.CreateMap<PostCategory, PostCategoryViewModel>();
@@ -23,7 +23,6 @@ namespace BossShop.Web.Mappings
                 cfg.CreateMap<ProductCategory, ProductCategoryViewModel>();
 
             });
-            config.CompileMappings();
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BossShop.Web.Models;
+using BOSS.Model.Models;
 
 namespace BossShop.Web.Controllers
 {

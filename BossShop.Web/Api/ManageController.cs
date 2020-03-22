@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BossShop.Web.Models;
 
-namespace BossShop.Web.Controllers
+namespace BossShop.Web.Api
 {
     [Authorize]
     public class ManageController : Controller

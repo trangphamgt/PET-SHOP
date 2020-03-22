@@ -1,5 +1,8 @@
 namespace BOSS.Data.Migrations
 {
+    using BOSS.Model.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,10 +17,27 @@ namespace BOSS.Data.Migrations
 
         protected override void Seed(BOSS.Data.BossDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new BossDbContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new BossDbContext()));
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+
+            var user = new ApplicationUser()
+            {
+                UserName = "trangpham",
+                Email = "trangphamutc01@gmail.com",
+                EmailConfirmed = true,
+               
+            };
+            manager.Create(user, "123456$");
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+
+            }
+            var admin = manager.FindByEmail("trangphamutc01@gmail.com");
+            manager.AddToRole(admin.Id, "Admin");
+            manager.AddToRole(admin.Id, "User");
         }
     }
 }

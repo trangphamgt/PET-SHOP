@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 using BossShop.Web.Models;
 using BOSS.Model.Models;
 
-namespace BossShop.Web.Controllers
+namespace BossShop.Web.Api
 {
     [Authorize]
     public class AccountController : Controller

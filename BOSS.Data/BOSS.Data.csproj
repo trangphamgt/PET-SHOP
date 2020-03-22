@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202003131724512_AspIdentity-Authen.Designer.cs">
       <DependentUpon>202003131724512_AspIdentity-Authen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003221612112_changeKey.cs" />
+    <Compile Include="Migrations\202003221612112_changeKey.Designer.cs">
+      <DependentUpon>202003221612112_changeKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003131724512_AspIdentity-Authen.resx">
       <DependentUpon>202003131724512_AspIdentity-Authen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221612112_changeKey.resx">
+      <DependentUpon>202003221612112_changeKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

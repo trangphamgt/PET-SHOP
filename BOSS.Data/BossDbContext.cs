@@ -31,10 +31,11 @@ namespace BOSS.Data
         public virtual DbSet<Comment> Comments { set; get; }
         public virtual DbSet<Error> Errors { set; get; }
 
-        
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey<string>(r => r.UserId);
             modelBuilder.Entity<IdentityUserRole>().HasKey<string>(r => r.RoleId);
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(r => r.UserId);
 

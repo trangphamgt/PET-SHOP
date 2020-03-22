@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace BossShop.Web.Controllers
+namespace BossShop.Web.Api
 {
     public class PostController : ApiBaseController
     {

@@ -52,7 +52,7 @@ namespace BossShop.Web.Infrastructure.Core
             return response;
         }
 
-        private void LogError(Exception ex)
+        public void LogError(Exception ex)
         {
             try
             {

@@ -3,6 +3,7 @@ using BOSS.Model.Models;
 using BOSS.Service;
 using BossShop.Web.Infrastructure.Core;
 using BossShop.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,115 +11,126 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using BossShop.Web.Infrastructure.Extensions;
+using System.Collections;
 
 namespace BossShop.Web.Api
 {
     public class PostController : ApiBaseController
     {
-        IPostService _postService;
+        private IPostService _postService;
+        
+
         public PostController(IErrorService errorService, IPostService postService) : base(errorService)
         {
             this._postService = postService;
         }
+
         [HttpPost]
-        public HttpResponseMessage Create(HttpRequestMessage request, Post post)
+        public PostViewModel Create(PostViewModel postVm)
         {
-            return CreateHttpResponse(request, () =>
+            try
             {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else {
-                    var _post = _postService.Add(post);
-                    _postService.SaveChanges();
-
-                    response = request.CreateResponse(HttpStatusCode.Created, _post, Configuration.Formatters.JsonFormatter);
-
-                }
-                return response;
-            });
+                Post post = new Post();
+                post.UpdatePost(postVm);
+                var result = _postService.Add(post);
+                _postService.SaveChanges();
+                postVm = Mapper.Map<PostViewModel>(result);
+                return postVm;
+            }catch(Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
         }
+
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        public   List<PostViewModel> Get()
         {
-            return CreateHttpResponse(request, () =>
+            try
             {
                 List<Post> list = _postService.GetAll().ToList();
 
                 List<PostViewModel> listPostVm = Mapper.Map<List<PostViewModel>>(list);
-
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostVm);
-
-                return response;
-            });
-        }
-        [HttpGet]
-        public HttpResponseMessage GetDetail(HttpRequestMessage request, int id)
-        {
-            return CreateHttpResponse(request, () =>
+                return listPostVm;
+            }
+            catch (Exception ex)
             {
-                HttpResponseMessage response = null;
-                Post _post = _postService.GetById(id);
-                PostViewModel _postVm = Mapper.Map<PostViewModel>(_post);
-                response = request.CreateResponse(HttpStatusCode.Created, _postVm, Configuration.Formatters.JsonFormatter);
-                return response;
-            });
-        }
-        [HttpPut]
-        public HttpResponseMessage Update(HttpRequestMessage request, Post post)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    _postService.Update(post);
-                    _postService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK);
+                LogError(ex);
+                return null;
+            }
 
-                }
-                return response;
-            });
-        }
-        [HttpDelete]
-        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var post = _postService.Delete(id);
-                    _postService.SaveChanges();
-
-                    response = request.CreateResponse(HttpStatusCode.OK);
-
-                }
-                return response;
-            });
-        }
-        public HttpResponseMessage GetAllPostPaging(HttpRequestMessage request, int pageIndex, int pageSize, int totalRow)
-        {
-
-            return CreateHttpResponse(request, () =>
-            {
                 
-                HttpResponseMessage response = null;
-                IEnumerable<Post> lst = _postService.GetAllPaging(pageIndex, pageSize,totalRow);
-                response = request.CreateResponse(HttpStatusCode.OK, lst);
-                return response;
-            });
+            
         }
 
+        [HttpGet]
+        public PostViewModel GetDetail(int id)
+        {
+            try
+            {
+                Post _post = _postService.GetById(id);
+                PostViewModel postVM = Mapper.Map<PostViewModel>(_post);
+                return postVM;
+            } catch (Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+            
+            
+        }
+
+        [HttpPut]
+        public void Update(PostViewModel postVm)
+        {
+            try
+            {
+                Post post = new Post();
+                post.UpdatePost(postVm);
+                _postService.Update(post);
+                _postService.SaveChanges();
+            }catch( Exception ex)
+            {
+                LogError(ex);
+            }
+        }
+
+        [HttpDelete]
+        public PostViewModel Delete( int id)
+        {
+            try
+            {
+                Post post = _postService.Delete(id);
+                PostViewModel postVm = Mapper.Map<PostViewModel>(post);
+                _postService.SaveChanges();
+                return postVm;
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+        }
+
+        public async Task<dynamic> GetAllPostPaging(int pageIndex, int pageSize, int totalRow)
+        {
+            try
+            {
+                var lst = _postService.GetAllPaging(pageIndex, pageSize,out totalRow);
+                List<PostViewModel> lstVm = Mapper.Map<List<PostViewModel>>(lst);
+                var res = new
+                {
+                    ListPost =  lstVm,
+                    totalRow = totalRow
+                };
+                return res;
+            }catch(Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+            
+        }
     }
 }

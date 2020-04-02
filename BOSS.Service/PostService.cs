@@ -18,7 +18,7 @@ namespace BOSS.Service
         Post GetById(int id);
         void Update(Post post);
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(int pageIndex, int page, int totalRow);
+        IEnumerable<Post> GetAllPaging(int pageIndex, int page,out int totalRow);
         IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, int totalRow);
         IEnumerable<Post> GetAllByCategoryPost(int postCategory,  int pageIndex, int page,int totalRow);
         void SaveChanges();
@@ -70,7 +70,7 @@ namespace BOSS.Service
        
 
 
-        public IEnumerable<Post> GetAllPaging(int pageIndex, int page, int totalRow)
+        public IEnumerable<Post> GetAllPaging(int pageIndex, int page,out int totalRow)
         {
             return _postRepository.GetMultiPaging(x => x.Status!=0,out totalRow, pageIndex, page);
 

@@ -54,6 +54,11 @@ namespace BossShop.Web.App_Start
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
+
+            builder.RegisterAssemblyTypes(typeof(PostRepository).Assembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .AsImplementedInterfaces().InstancePerRequest();
+
             // Services
             builder.RegisterAssemblyTypes(typeof(PostService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))

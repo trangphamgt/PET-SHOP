@@ -28,4 +28,11 @@ namespace BossShop.Web.Models
         public string MetaDescription { set; get; }
         public int? Status { set; get; }
     }
+
+    public class ListPostViewModel
+    {
+        public List<PostViewModel> PostViewModels { set; get; }
+        public int? TotalRow { set; get; }
+
+    }
 }

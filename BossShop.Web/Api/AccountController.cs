@@ -56,10 +56,20 @@ namespace BossShop.Web.Api
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public LoginViewModel Login(LoginViewModel model)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (!ModelState.IsValid)
+            {
+                
+                return null;
+            }
+            else
+            {
+                var result = SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                if (result.Result == SignInStatus.Success)
+                    return model;
+                else return null;
+            }
         }
 
         //

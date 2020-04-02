@@ -81,6 +81,71 @@ namespace BossShop.Web.Infrastructure.Extensions
             order.PaymentStatus = orderVm.PaymentStatus;
             order.Status = orderVm.Status;
         }
-        
+        public static void UpdateComment(this Comment comment, CommentViewModel commentVM)
+        {
+            comment.Id = commentVM.Id;
+            comment.PostId = commentVM.PostId;
+            comment.Status = commentVM.Status;
+            comment.CommentId = commentVM.CommentId;
+            comment.Content = commentVM.Content;
+            comment.CreatedBy = commentVM.CreatedBy;
+            comment.CreatedDate = commentVM.CreatedDate;
+            comment.UpdatedBy = commentVM.UpdatedBy;
+            comment.UpdatedDate = commentVM.UpdatedDate;
+            comment.UpdatedBy = commentVM.UpdatedBy;
+        }
+        public static void UpdateMenuGroup(this MenuGroup menuGroup, MenuGroupViewModel menuGroupVM)
+        {
+            menuGroup.Id = menuGroupVM.Id;
+            menuGroup.Name = menuGroupVM.Name;
+
+        }
+        public static void UpdateOrderDetail(this OrderDetail model, OrderDetailViewModel viewModel)
+        {
+            model.OrderId = viewModel.OrderId;
+            model.ProductId = viewModel.ProductId;
+            model.Price = viewModel.Price;
+            model.Quantity = viewModel.Quantity;
+        }
+        public static void UpdatePostCategory(this PostCategory model, PostCategoryViewModel viewModel)
+        {
+            model.Alias = viewModel.Alias;
+            model.CreatedBy = viewModel.CreatedBy;
+            model.CreatedDate = viewModel.CreatedDate;
+            model.Description = viewModel.Description;
+            model.DisplayOrder = viewModel.DisplayOrder;
+            model.HomeFlag = viewModel.HomeFlag;
+            model.Id = viewModel.Id;
+            model.Image = viewModel.Image;
+            model.MetaDescription = viewModel.MetaDescription;
+            model.MetaKeyword = viewModel.MetaKeyword;
+            model.Name = viewModel.Name;
+            model.Status = viewModel.Status;
+            model.UpdatedBy = viewModel.UpdatedBy;
+            model.UpdatedDate = viewModel.UpdatedDate;
+        }
+        public static void UpdateProductCategory(this ProductCategory model, ProductCategoryViewModel viewModel)
+        {
+            model.Alias = viewModel.Alias;
+            model.CreatedBy = viewModel.CreatedBy;
+            model.CreatedDate = viewModel.CreatedDate;
+            model.Description = viewModel.Description;
+            model.DisplayOrder = viewModel.DisplayOrder;
+            model.HomeFlag = viewModel.HomeFlag;
+            model.Id = viewModel.Id;
+            model.Image = viewModel.Image;
+            model.MetaDescription = viewModel.MetaDescription;
+            model.MetaKeyword = viewModel.MetaKeyword;
+            model.Name = viewModel.Name;
+            model.Status = viewModel.Status;
+            model.UpdatedBy = viewModel.UpdatedBy;
+            model.UpdatedDate = viewModel.UpdatedDate;
+
+        }
+        public static void UpdatePostTag(this PostTag model, PostTagViewModel viewModel)
+        {
+            model.PostId = viewModel.PostId;
+            model.TagId = viewModel.PostId;
+        }
     }
 }

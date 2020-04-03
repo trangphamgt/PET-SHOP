@@ -9,18 +9,16 @@ namespace BOSS.Data.Infrastructure
     public class DbFactory : Disposable, IDbFactory
     {
         private BossDbContext dbContext;
+
         public BossDbContext Init()
         {
-            return this.dbContext ?? (dbContext = new BossDbContext());
+            return dbContext ?? (dbContext = new BossDbContext());
         }
+
         protected override void DisposeCore()
         {
-            if(dbContext != null)
-            {
+            if (dbContext != null)
                 dbContext.Dispose();
-            }
         }
-
     }
-
 }

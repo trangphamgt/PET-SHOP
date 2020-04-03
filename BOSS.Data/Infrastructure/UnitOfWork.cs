@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BOSS.Data.Infrastructure
 {
-    public class UnitOfWork : IUnitofWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
         private BossDbContext dbContext;
@@ -15,13 +15,15 @@ namespace BOSS.Data.Infrastructure
         {
             this.dbFactory = dbFactory;
         }
+
         public BossDbContext DbContext
         {
-            get { return dbContext ??( dbContext = dbFactory.Init()); }
+            get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
+
         public void Commit()
         {
-            dbContext.SaveChanges();
+            DbContext.SaveChanges();
         }
     }
 }

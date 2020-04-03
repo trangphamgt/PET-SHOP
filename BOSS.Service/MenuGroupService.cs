@@ -24,9 +24,9 @@ namespace BOSS.Service
     public class MenuGroupService : IMenuGroupService
     {
         IMenuGroupRepository _menuGroupRepository;
-        IUnitofWork _unitofWork;
+        IUnitOfWork _unitofWork;
         
-        public MenuGroupService(IMenuGroupRepository menuGroupRepository, IUnitofWork unitofWork)
+        public MenuGroupService(IMenuGroupRepository menuGroupRepository, IUnitOfWork unitofWork)
         {
             this._menuGroupRepository = menuGroupRepository;
             this._unitofWork = unitofWork;

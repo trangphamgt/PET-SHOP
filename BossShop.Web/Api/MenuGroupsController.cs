@@ -13,12 +13,12 @@ using BOSS.Data;
 using BOSS.Model.Models;
 using BOSS.Service;
 using BossShop.Web.Infrastructure.Core;
-
 namespace BossShop.Web.Api
 {
     public class MenuGroupsController : ApiBaseController
     {
         private IMenuGroupService _menuGroupService;
+        private BossDbContext db = new BossDbContext();
         public MenuGroupsController(IErrorService errorService, IMenuGroupService menuGroupService) : base(errorService)
         {
             this._menuGroupService = menuGroupService;
@@ -84,23 +84,10 @@ namespace BossShop.Web.Api
         [HttpPost]
         public MenuGroup PostMenuGroup(MenuGroup menuGroup)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            //db.MenuGroups.Add(menuGroup);
-            //await db.SaveChangesAsync();
-
-            //return CreatedAtRoute("DefaultApi", new { id = menuGroup.Id }, menuGroup);
-            if (!ModelState.IsValid)
-            {
-                return null;
-            }
             MenuGroup res = _menuGroupService.Add(menuGroup);
             _menuGroupService.SaveChanges();
-            return res;
-            
+            return res; 
+
         }
 
         // DELETE: api/MenuGroups/5

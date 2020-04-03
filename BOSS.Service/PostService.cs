@@ -29,10 +29,10 @@ namespace BOSS.Service
     {
         IPostRepository _postRepository;
         ICommentRepository _commentRepository;
-       
-        IUnitofWork _unitOfWork;
 
-        public PostService(IPostRepository postRepository, IUnitofWork unitofWork)
+        IUnitOfWork _unitOfWork;
+
+        public PostService(IPostRepository postRepository, IUnitOfWork unitofWork)
         {
             this._postRepository = postRepository;
             this._unitOfWork = unitofWork;

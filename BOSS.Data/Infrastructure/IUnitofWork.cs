@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BOSS.Data.Infrastructure
 {
-    public interface IUnitofWork
+    public interface IUnitOfWork
     {
         void Commit();
     }

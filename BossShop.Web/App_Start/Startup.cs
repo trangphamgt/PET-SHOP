@@ -37,7 +37,7 @@ namespace BossShop.Web.App_Start
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
 
-            builder.RegisterType<UnitOfWork>().As<IUnitofWork>().InstancePerRequest();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             builder.RegisterType<BossDbContext>().AsSelf().InstancePerRequest();
@@ -50,17 +50,13 @@ namespace BossShop.Web.App_Start
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
 
+            // Repositories
             builder.RegisterAssemblyTypes(typeof(PostRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
-
-            builder.RegisterAssemblyTypes(typeof(PostRepository).Assembly)
-                .Where(t => t.Name.EndsWith("ViewModel"))
-                .AsImplementedInterfaces().InstancePerRequest();
-
             // Services
-            builder.RegisterAssemblyTypes(typeof(PostService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 
@@ -68,7 +64,6 @@ namespace BossShop.Web.App_Start
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
-
 
         }
     }

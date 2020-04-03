@@ -35,5 +35,5 @@ namespace BOSS.Data.Infrastructure
         {
         }
     }
-    
+
 }

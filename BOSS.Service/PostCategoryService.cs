@@ -24,8 +24,8 @@ namespace BOSS.Service
     public class PostCategoryService : IPostCategoryService
     {
         private readonly IPostCategoryRepository _postCategoryRepository;
-        private readonly IUnitofWork _unitOfWork;
-        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitofWork unitofWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitofWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitofWork;

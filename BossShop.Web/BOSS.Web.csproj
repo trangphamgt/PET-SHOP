@@ -209,7 +209,6 @@
     <Compile Include="Api\DefaultController.cs" />
     <Compile Include="Api\ManageController.cs" />
     <Compile Include="Api\MenuGroupsController.cs" />
-    <Compile Include="Api\MenusController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

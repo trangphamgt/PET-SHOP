@@ -23,9 +23,9 @@ namespace BOSS.Service
     public class CommentService : ICommentService
     {
         ICommentRepository _commentrepository;
-        IUnitofWork _unitOfWork;
+        IUnitOfWork _unitOfWork;
 
-        public CommentService(ICommentRepository commentRepository, IUnitofWork unitofWork)
+        public CommentService(ICommentRepository commentRepository, IUnitOfWork unitofWork)
         {
             this._commentrepository = commentRepository;
             this._unitOfWork = unitofWork;

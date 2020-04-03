@@ -17,9 +17,9 @@ namespace BOSS.Service
     public class ErrorService: IErrorService
     {
         IErrorRepository _errorRepository;
-        IUnitofWork _unitOfWork;
+        IUnitOfWork _unitOfWork;
 
-        public ErrorService(IErrorRepository errorRepository, IUnitofWork unitofWork)
+        public ErrorService(IErrorRepository errorRepository, IUnitOfWork unitofWork)
         {
             this._errorRepository = errorRepository;
             this._unitOfWork = unitofWork;

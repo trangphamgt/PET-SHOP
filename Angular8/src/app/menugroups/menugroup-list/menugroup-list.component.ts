@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenugroupsService } from 'src/app/shared/menugroups.service';
+import { Menugroup } from 'src/app/shared/menugroup.model';
 
 @Component({
   selector: 'app-menugroup-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenugroupListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service : MenugroupsService) { 
+    
+  }
 
   ngOnInit(): void {
+    this.service.getList();
+  }
+  populateForm(mg : Menugroup){
+    this.service.formData = mg;
+
   }
 
 }

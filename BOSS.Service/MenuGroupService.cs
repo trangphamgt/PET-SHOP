@@ -64,7 +64,7 @@ namespace BOSS.Service
 
         public MenuGroup GetById(int id)
         {
-            throw new NotImplementedException();
+            return _menuGroupRepository.GetById(id);
         }
 
         public void SaveChanges()
@@ -74,7 +74,7 @@ namespace BOSS.Service
 
         public void Update(MenuGroup model)
         {
-            throw new NotImplementedException();
+            _menuGroupRepository.Update(model);
         }
     }
 }

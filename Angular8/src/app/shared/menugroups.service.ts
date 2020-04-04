@@ -7,11 +7,19 @@ import {HttpClient} from '@angular/common/http';
 export class MenugroupsService {
 
   formData : Menugroup;
-  readonly rootURL = "https://localhost:44344/api/MenuGroups";
-  constructor(public http : HttpClient) { }
-  addData(formData : Menugroup){
-    console.log(formData);
-    debugger;
-    return this.http.post(this.rootURL+ "/PostMenuGroup",formData);
+  list : Menugroup[];
+  readonly rootURL = "https://localhost:44344/api";
+  constructor(public http : HttpClient) {
+   }
+  
+  
+  addData (formData : Menugroup) {
+    return this.http.post(this.rootURL+'/MenuGroups',formData);
+  }
+  getList(){
+    return this.http.get(this.rootURL+'/MenuGroups').toPromise().then(res=> this.list = res as Menugroup[]);
+  }
+  putData (formData : Menugroup) {
+    return this.http.put(this.rootURL+'/MenuGroups/'+formData.Id,formData);
   }
 }

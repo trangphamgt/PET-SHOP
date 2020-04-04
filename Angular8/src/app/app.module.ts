@@ -7,6 +7,9 @@ import { MenugroupComponent } from './menugroups/menugroup/menugroup.component';
 import { MenugroupListComponent } from './menugroups/menugroup-list/menugroup-list.component';
 import { MenugroupsService } from './shared/menugroups.service';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +20,13 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut : 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
   ],
   providers: [MenugroupsService],
   bootstrap: [AppComponent]

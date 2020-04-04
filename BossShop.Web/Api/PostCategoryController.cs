@@ -13,6 +13,8 @@ using System.Web.Http;
 
 namespace BossShop.Web.Api
 {
+    [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiBaseController
     {
         private IPostCategoryService _postCategoryService;
@@ -23,23 +25,29 @@ namespace BossShop.Web.Api
             this._postCategoryService = postCategoryService;
         }
 
-        [HttpPost]
-        public PostCategoryViewModel Create(PostCategoryViewModel postCategoryVm)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
-            try
+            return CreateHttpResponse(request, () =>
             {
-                PostCategory postCategory = new PostCategory();
-                postCategory.UpdatePostCategory(postCategoryVm);
-                var result = _postCategoryService.Add(postCategory);
-                _postCategoryService.SaveChanges();
-                postCategoryVm = Mapper.Map<PostCategoryViewModel>(result);
-                return postCategoryVm;
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
+                HttpResponseMessage response = null;
+                if (ModelState.IsValid)
+                {
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVm);
+
+                    var category = _postCategoryService.Add(newPostCategory);
+                    _postCategoryService.SaveChanges();
+
+                    response = request.CreateResponse(HttpStatusCode.Created, category);
+
+                }
+                return response;
+            });
         }
 
         [HttpGet]

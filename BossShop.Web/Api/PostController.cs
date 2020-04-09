@@ -19,118 +19,82 @@ namespace BossShop.Web.Api
     public class PostController : ApiBaseController
     {
         private IPostService _postService;
-        
 
-        public PostController(IErrorService errorService, IPostService postService) : base(errorService)
+        public PostController(IPostService postService, IErrorService errorService) : base(errorService)
         {
             this._postService = postService;
         }
 
         [HttpPost]
-        public PostViewModel Create(PostViewModel postVm)
+        public PostViewModel Add(PostViewModel model)
         {
             try
             {
-                Post post = new Post();
-                post.UpdatePost(postVm);
-                var result = _postService.Add(post);
+                Post postCategory = new Post();
+                postCategory.UpdatePost(model);
+
+                var res = _postService.Add(postCategory);
                 _postService.SaveChanges();
-                postVm = Mapper.Map<PostViewModel>(result);
-                return postVm;
-            }catch(Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
-        }
-
-        [HttpGet]
-        public   List<PostViewModel> Get()
-        {
-            try
-            {
-                List<Post> list = _postService.GetAll().ToList();
-
-                List<PostViewModel> listPostVm = Mapper.Map<List<PostViewModel>>(list);
-                return listPostVm;
+                return Mapper.Map<PostViewModel>(res);
             }
             catch (Exception ex)
             {
                 LogError(ex);
                 return null;
             }
-
-                
-            
         }
-
         [HttpGet]
-        public PostViewModel GetDetail(int id)
+        public PostViewModel Get(int id)
         {
             try
             {
-                Post _post = _postService.GetById(id);
-                PostViewModel postVM = Mapper.Map<PostViewModel>(_post);
-                return postVM;
-            } catch (Exception ex)
+                return Mapper.Map<PostViewModel>(_postService.GetById(id));
+            }
+            catch (Exception ex)
             {
                 LogError(ex);
                 return null;
             }
-            
-            
         }
-
+        [HttpGet]
+        public IEnumerable<PostViewModel> Get()
+        {
+            var lst = _postService.GetAll();
+            List<PostViewModel> res = Mapper.Map<List<PostViewModel>>(lst);
+            return res;
+        }
         [HttpPut]
-        public void Update(PostViewModel postVm)
+        public void Update(int Id, PostViewModel model)
         {
             try
             {
-                Post post = new Post();
-                post.UpdatePost(postVm);
-                _postService.Update(post);
+                Post postCategory = new Post();
+                postCategory.UpdatePost(model);
+                _postService.Update(postCategory);
                 _postService.SaveChanges();
-            }catch( Exception ex)
+            }
+            catch (Exception ex)
             {
                 LogError(ex);
+
             }
         }
 
         [HttpDelete]
-        public PostViewModel Delete( int id)
+        public PostViewModel Delete(int Id)
         {
             try
             {
-                Post post = _postService.Delete(id);
-                PostViewModel postVm = Mapper.Map<PostViewModel>(post);
+                var model = _postService.Delete(Id);
                 _postService.SaveChanges();
-                return postVm;
+                var res = Mapper.Map<PostViewModel>(model);
+                return res;
             }
             catch (Exception ex)
             {
                 LogError(ex);
                 return null;
             }
-        }
-
-        public async Task<dynamic> GetAllPostPaging(int pageIndex, int pageSize, int totalRow)
-        {
-            try
-            {
-                var lst = _postService.GetAllPaging(pageIndex, pageSize,out totalRow);
-                List<PostViewModel> lstVm = Mapper.Map<List<PostViewModel>>(lst);
-                var res = new
-                {
-                    ListPost =  lstVm,
-                    totalRow = totalRow
-                };
-                return res;
-            }catch(Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
-            
         }
     }
 }

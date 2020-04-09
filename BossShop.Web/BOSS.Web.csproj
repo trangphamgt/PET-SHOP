@@ -313,9 +313,12 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\DefaultController.cs" />
     <Compile Include="Api\ManageController.cs" />
+    <Compile Include="Api\MenuController.cs" />
     <Compile Include="Api\MenuGroupsController.cs" />
+    <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

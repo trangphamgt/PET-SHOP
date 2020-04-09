@@ -51,7 +51,7 @@ namespace BossShop.Web.Infrastructure.Core
             }
             return response;
         }
-
+        [NonAction]
         public void LogError(Exception ex)
         {
             try

@@ -10,124 +10,82 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using BossShop.Web.Infrastructure.Extensions;
 namespace BossShop.Web.Api
 {
-    [RoutePrefix("api/postcategory")]
-    [Authorize]
     public class PostCategoryController : ApiBaseController
     {
         private IPostCategoryService _postCategoryService;
 
-
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
+        public PostCategoryController(IPostCategoryService postCategoryService, IErrorService errorService) : base(errorService)
         {
             this._postCategoryService = postCategoryService;
         }
 
-        [Route("add")]
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    PostCategory newPostCategory = new PostCategory();
-                    newPostCategory.UpdatePostCategory(postCategoryVm);
-
-                    var category = _postCategoryService.Add(newPostCategory);
-                    _postCategoryService.SaveChanges();
-
-                    response = request.CreateResponse(HttpStatusCode.Created, category);
-
-                }
-                return response;
-            });
-        }
-
-        [HttpGet]
-        public List<PostViewModel> Get()
-        {
-            try
-            {
-                List<PostCategory> list = _postCategoryService.GetAll().ToList();
-
-                List<PostViewModel> listPostVm = Mapper.Map<List<PostViewModel>>(list);
-                return listPostVm;
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
-
-
-
-        }
-
-        [HttpGet]
-        public PostViewModel GetDetail(int id)
-        {
-            try
-            {
-                PostCategory _postCategory = _postCategoryService.GetById(id);
-                PostViewModel postCategoryVM = Mapper.Map<PostViewModel>(_postCategory);
-                return postCategoryVM;
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
-
-
-        }
-
-        [HttpPut]
-        public void Update(PostCategoryViewModel postCategoryVm)
+        [HttpPost]
+        public PostCategoryViewModel Add(PostCategoryViewModel model)
         {
             try
             {
                 PostCategory postCategory = new PostCategory();
-                postCategory.UpdatePostCategory(postCategoryVm);
+                postCategory.UpdatePostCategory(model);
+
+                var res = _postCategoryService.Add(postCategory);
+                _postCategoryService.SaveChanges();
+                return Mapper.Map<PostCategoryViewModel>(res);
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+        }
+        [HttpGet]
+        public PostCategoryViewModel Get(int id)
+        {
+            try
+            {
+                return Mapper.Map<PostCategoryViewModel>(_postCategoryService.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+        }
+        [HttpGet]
+        public IEnumerable<PostCategoryViewModel> Get()
+        {
+            var lst = _postCategoryService.GetAll();
+            List<PostCategoryViewModel> res = Mapper.Map<List<PostCategoryViewModel>>(lst);
+            return res;
+        }
+        [HttpPut]
+        public void Update(int Id, PostCategoryViewModel model)
+        {
+            try
+            {
+                PostCategory postCategory = new PostCategory();
+                postCategory.UpdatePostCategory(model);
                 _postCategoryService.Update(postCategory);
                 _postCategoryService.SaveChanges();
             }
             catch (Exception ex)
             {
                 LogError(ex);
+
             }
         }
 
         [HttpDelete]
-        public PostViewModel Delete(int id)
+        public PostCategoryViewModel Delete(int Id)
         {
             try
             {
-                PostCategory postCategory = _postCategoryService.Delete(id);
-                PostViewModel postCategoryVm = Mapper.Map<PostViewModel>(postCategory);
+                var model = _postCategoryService.Delete(Id);
                 _postCategoryService.SaveChanges();
-                return postCategoryVm;
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-                return null;
-            }
-        }
-
-        public List<PostViewModel> GetAllPostPaging(int pageIndex, int pageSize, int totalRow)
-        {
-            try
-            {
-                var lst = _postCategoryService.GetAllPaging(pageIndex, pageSize, totalRow);
-                List<PostViewModel> lstVm = Mapper.Map<List<PostViewModel>>(lst);
-                return lstVm;
+                var res = Mapper.Map<PostCategoryViewModel>(model);
+                return res;
             }
             catch (Exception ex)
             {

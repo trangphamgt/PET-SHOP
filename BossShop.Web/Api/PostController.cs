@@ -96,5 +96,27 @@ namespace BossShop.Web.Api
                 return null;
             }
         }
+
+        [HttpPost]
+        public CommentViewModel AddComment(CommentViewModel viewModel)
+        {
+            Comment model = new Comment();
+            model.UpdateComment(viewModel);
+            var res = _postService.AddComment(model);
+            return Mapper.Map<CommentViewModel>(res);
+        }
+        [HttpGet]
+        public IEnumerable<CommentViewModel> GetAllCommentByPost(int postId)
+        {
+            int totalRow;
+            return Mapper.Map<List<CommentViewModel>>(_postService.GetAllCommentByPost(postId, out totalRow));
+        }
+        [HttpGet]
+        public IEnumerable<CommentViewModel> GetAllCommentByComment(int commentId)
+        {
+            int totalRow;
+            return Mapper.Map<List<CommentViewModel>>(_postService.GetAllCommentByComment(commentId, out totalRow));
+        }
+
     }
 }

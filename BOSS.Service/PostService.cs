@@ -21,6 +21,9 @@ namespace BOSS.Service
         IEnumerable<Post> GetAllPaging(int pageIndex, int page,out int totalRow);
         IEnumerable<Post> GetAllByTagPaging(int tag,int pageIndex, int page, int totalRow);
         IEnumerable<Post> GetAllByCategoryPost(int postCategory,  int pageIndex, int page,int totalRow);
+        IEnumerable<Comment> GetAllCommentByPost(int postId, out int totalRow);
+        IEnumerable<Comment> GetAllCommentByComment(int commentId, out int totalRow);
+        Comment AddComment(Comment model);
         void SaveChanges();
 
 
@@ -41,6 +44,11 @@ namespace BOSS.Service
         public Post Add(Post post)
         {
             return _postRepository.Add(post);
+        }
+
+        public Comment AddComment(Comment model)
+        {
+            return _commentRepository.Add(model);
         }
 
         public Post Delete(int id)
@@ -67,8 +75,16 @@ namespace BOSS.Service
         {
             return _postRepository.GetAllByTag(tag, pageIndex, page,out totalRow);
         }
-       
 
+        public IEnumerable<Comment> GetAllCommentByComment(int commentId, out int totalRow)
+        {
+            return _commentRepository.GetAllCommentByComment(commentId, out totalRow);
+        }
+
+        public IEnumerable<Comment> GetAllCommentByPost(int postId, out int totalRow)
+        {
+            return _commentRepository.GetAllCommentByPost(postId, out totalRow);
+        }
 
         public IEnumerable<Post> GetAllPaging(int pageIndex, int page,out int totalRow)
         {

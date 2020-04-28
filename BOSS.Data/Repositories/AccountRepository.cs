@@ -20,7 +20,7 @@ namespace BOSS.Data.Repositories
         }
         public string GetUserNameByEmail(string email)
         {
-            return DbContext.Users.Find(email).UserName;
+            return DbContext.Users.Where(c => c.Email == email).First().UserName;
         }
     }
 }

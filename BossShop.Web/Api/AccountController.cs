@@ -11,23 +11,21 @@ using Microsoft.Owin.Security;
 using BossShop.Web.Models;
 using BOSS.Model.Models;
 using BOSS.Service;
-using BossShop.Web.Infrastructure.Core;
 
 namespace BossShop.Web.Api
 {
     [Authorize]
     [RoutePrefix("api/account")]
-    public class AccountController : ApiBaseController
+    public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IAccountService _accountService;
-
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService, IErrorService errorService ) : base(errorService)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -71,14 +69,15 @@ namespace BossShop.Web.Api
             }
             else
             {
-                if(model.Email.IndexOf("@gmail") > 0)
-                {
-
+                var userName = model.Email;
+                if(model.Email.IndexOf("@") > 0) {
+                   userName =  _accountService.GetUserNameByEmail(model.Email);
                 }
-                var result = SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,false);
+                var result = SignInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
                 if (result.Result == SignInStatus.Success)
                     return model;
                 else return null;
+
             }
         }
 

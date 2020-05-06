@@ -16,7 +16,6 @@ namespace BossShop.Web.Api
     public class MenuController : ApiBaseController
     {
         private IMenuService _menuService;
-
         public MenuController(IMenuService menuService, IErrorService errorService) : base(errorService)
         {
             this._menuService = menuService;
@@ -53,11 +52,16 @@ namespace BossShop.Web.Api
                 return null;
             }
         }
-        [HttpGet]
-        public IEnumerable<MenuViewModel> Get()
+     
+        public IEnumerable<MenuViewModel> GetByAdmin(bool IsAdmin)
         {
-            var lst = _menuService.GetAll();
+            var lst = _menuService.GetAll(IsAdmin);
             List<MenuViewModel> res = Mapper.Map<List<MenuViewModel>>(lst);
+            return res;
+        }
+        public IEnumerable<MenuGroupViewModel> GetAllMenuGroup(bool IsAdmin = false)
+        {
+            List<MenuGroupViewModel> res = Mapper.Map<List<MenuGroupViewModel>>(_menuService.GetMenuGroup(IsAdmin));
             return res;
         }
         [HttpPut]

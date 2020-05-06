@@ -310,11 +310,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AccountApiController.cs" />
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\DefaultController.cs" />
     <Compile Include="Api\ManageController.cs" />
     <Compile Include="Api\MenuController.cs" />
-    <Compile Include="Api\MenuGroupsController.cs" />
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
@@ -428,6 +428,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BoosShop.Common\BOSS.Common.csproj">
+      <Project>{0D5E9654-9A2E-481E-958B-377F0D4DF89E}</Project>
+      <Name>BOSS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BOSS.Data\BOSS.Data.csproj">
       <Project>{A0897D14-7FBD-4330-886A-E11167132ED9}</Project>
       <Name>BOSS.Data</Name>

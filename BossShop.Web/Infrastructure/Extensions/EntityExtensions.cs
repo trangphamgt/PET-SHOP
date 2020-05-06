@@ -58,7 +58,7 @@ namespace BossShop.Web.Infrastructure.Extensions
             menu.Name = menuViewModel.Name;
             menu.URL = menuViewModel.URL;
             menu.Status = menuViewModel.Status;
-            menu.GroupID = menuViewModel.GroupID;
+            menu.ParentId = menuViewModel.ParentId;
         }
         public static void UpdateTag(this Tag tag, TagViewModel tagVm)
         {
@@ -94,12 +94,7 @@ namespace BossShop.Web.Infrastructure.Extensions
             comment.UpdatedDate = commentVM.UpdatedDate;
             comment.UpdatedBy = commentVM.UpdatedBy;
         }
-        public static void UpdateMenuGroup(this MenuGroup menuGroup, MenuGroupViewModel menuGroupVM)
-        {
-            menuGroup.Id = menuGroupVM.Id;
-            menuGroup.Name = menuGroupVM.Name;
-
-        }
+        
         public static void UpdateOrderDetail(this OrderDetail model, OrderDetailViewModel viewModel)
         {
             model.OrderId = viewModel.OrderId;

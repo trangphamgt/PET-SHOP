@@ -106,6 +106,26 @@
     <Compile Include="Migrations\202004261557334_update1.Designer.cs">
       <DependentUpon>202004261557334_update1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005011504387_aaagf.cs" />
+    <Compile Include="Migrations\202005011504387_aaagf.Designer.cs">
+      <DependentUpon>202005011504387_aaagf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005051804335_menugroup.cs" />
+    <Compile Include="Migrations\202005051804335_menugroup.Designer.cs">
+      <DependentUpon>202005051804335_menugroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005051812403_drop-contraint.cs" />
+    <Compile Include="Migrations\202005051812403_drop-contraint.Designer.cs">
+      <DependentUpon>202005051812403_drop-contraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005051814192_drop-foreignkey.cs" />
+    <Compile Include="Migrations\202005051814192_drop-foreignkey.Designer.cs">
+      <DependentUpon>202005051814192_drop-foreignkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005051826382_jhdbs.cs" />
+    <Compile Include="Migrations\202005051826382_jhdbs.Designer.cs">
+      <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -162,6 +182,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004261557334_update1.resx">
       <DependentUpon>202004261557334_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005011504387_aaagf.resx">
+      <DependentUpon>202005011504387_aaagf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005051804335_menugroup.resx">
+      <DependentUpon>202005051804335_menugroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005051812403_drop-contraint.resx">
+      <DependentUpon>202005051812403_drop-contraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005051814192_drop-foreignkey.resx">
+      <DependentUpon>202005051814192_drop-foreignkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005051826382_jhdbs.resx">
+      <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

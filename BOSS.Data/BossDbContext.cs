@@ -19,7 +19,6 @@ namespace BOSS.Data
         }
 
         public virtual DbSet<Menu> Menus { set; get; }
-        public virtual DbSet<MenuGroup> MenuGroups { set; get; }
         public virtual DbSet<Product> Products { set; get; }
         public virtual DbSet<ProductCategory> ProductCategories { set; get; }
         public virtual DbSet<Post> Posts { set; get; }

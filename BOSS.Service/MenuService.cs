@@ -16,7 +16,8 @@ namespace BOSS.Service
         Menu Delete(Menu model);
         Menu GetById(int id);
         void Update(Menu model);
-        IEnumerable<Menu> GetAll();
+        IEnumerable<Menu> GetAll(bool IsAdmin);
+        IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin);
         void SaveChanges();
 
 
@@ -24,10 +25,12 @@ namespace BOSS.Service
     public class MenuService : IMenuService
     {
         IMenuRepository _menuRepository;
+        IMenuGroupRepository _menuGroupRepository;
         IUnitOfWork _unitOfWork;
-        public MenuService(IMenuRepository menuRepository, IUnitOfWork unitOfWork)
+        public MenuService(IMenuRepository menuRepository,IMenuGroupRepository menuGroupRepository, IUnitOfWork unitOfWork)
         {
             this._menuRepository = menuRepository;
+            this._menuGroupRepository = menuGroupRepository;
             this._unitOfWork = unitOfWork;
         }
         public Menu Add(Menu model)
@@ -45,14 +48,19 @@ namespace BOSS.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Menu> GetAll()
+        public IEnumerable<Menu> GetAll(bool IsAdmin)
         {
-            throw new NotImplementedException();
+            return _menuRepository.GetMulti(x=>x.IsAdmin);
         }
 
         public Menu GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin)
+        {
+            return _menuGroupRepository.GetMulti(x=>x.IsAdmin);
         }
 
         public void SaveChanges()

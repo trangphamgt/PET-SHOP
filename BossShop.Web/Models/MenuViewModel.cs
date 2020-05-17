@@ -10,8 +10,9 @@ namespace BossShop.Web.Models
         public int Id { set; get; }
         public string Name { set; get; }
         public string URL { set; get; }
+        public string Icon { set; get; }
         public int? DisplayOrder { set; get; }
-        public int ParentId { set; get; }
+        public int GroupId { set; get; }
         public bool IsAdmin { set; get; }
         public virtual MenuGroupViewModel MenuGroup { set; get; }
         public bool Status { set; get; }

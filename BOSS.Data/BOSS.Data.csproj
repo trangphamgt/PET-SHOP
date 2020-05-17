@@ -126,6 +126,18 @@
     <Compile Include="Migrations\202005051826382_jhdbs.Designer.cs">
       <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005071753064_releasemg.cs" />
+    <Compile Include="Migrations\202005071753064_releasemg.Designer.cs">
+      <DependentUpon>202005071753064_releasemg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005100939141_jksbjfb.cs" />
+    <Compile Include="Migrations\202005100939141_jksbjfb.Designer.cs">
+      <DependentUpon>202005100939141_jksbjfb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005101054302_iconmenu.cs" />
+    <Compile Include="Migrations\202005101054302_iconmenu.Designer.cs">
+      <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -197,6 +209,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005051826382_jhdbs.resx">
       <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005071753064_releasemg.resx">
+      <DependentUpon>202005071753064_releasemg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005100939141_jksbjfb.resx">
+      <DependentUpon>202005100939141_jksbjfb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005101054302_iconmenu.resx">
+      <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

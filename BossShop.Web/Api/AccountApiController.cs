@@ -3,6 +3,7 @@ using BOSS.Model.Models;
 using BOSS.Service;
 using BossShop.Web.Infrastructure.Core;
 using BossShop.Web.Models;
+using BossShop.Web.Models.Response;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace BossShop.Web.Api
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IAccountService _accountService;
-        public AccountApiController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService, ErrorService errorService): base(errorService)
+        public AccountApiController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService, ErrorService errorService) : base(errorService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -30,7 +31,7 @@ namespace BossShop.Web.Api
         {
             get
             {
-                return _signInManager ?? HttpContext.Current. GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
@@ -49,12 +50,17 @@ namespace BossShop.Web.Api
                 _userManager = value;
             }
         }
-        public LoginViewModel Login(LoginViewModel model)
+        public ApiResponse< LoginViewModel > Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
 
-                return null;
+                return new ApiResponse<LoginViewModel>
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest,
+                    IsError = true
+
+                };
             }
             else
             {
@@ -65,8 +71,20 @@ namespace BossShop.Web.Api
                 }
                 var result = SignInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
                 if (result.Result == SignInStatus.Success)
-                    return model;
-                else return null;
+                    return new ApiResponse<LoginViewModel>
+                    {
+                        StatusCode = (int) HttpStatusCode.OK,
+                        IsError = false,
+                        Result = model
+
+                    };
+                       
+                else return new ApiResponse<LoginViewModel>
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest,
+                    IsError = true
+
+                };
 
             }
         }
@@ -126,7 +144,7 @@ namespace BossShop.Web.Api
                 return (int)StatusEnum.Failure;
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            
+
             return result.Succeeded ? (int)StatusEnum.Success : (int)StatusEnum.Failure;
         }
         [HttpPost]

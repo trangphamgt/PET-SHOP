@@ -16,6 +16,7 @@ namespace BOSS.Model.Models
         public int Id { set; get; }
         [MaxLength(255)]
         public string Name { set; get; }
-        public bool IsAdmin { set; get; }
+        public int UserRole { set; get; }
+        public virtual IEnumerable<Menu> Menus { set; get; }
     }
 }

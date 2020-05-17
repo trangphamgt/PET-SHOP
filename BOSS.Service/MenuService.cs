@@ -16,8 +16,9 @@ namespace BOSS.Service
         Menu Delete(Menu model);
         Menu GetById(int id);
         void Update(Menu model);
-        IEnumerable<Menu> GetAll(bool IsAdmin);
-        IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin);
+        IEnumerable<Menu> GetMenuByRole(int role);
+        IEnumerable<Menu> GetMenus();
+        //IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin);
         void SaveChanges();
 
 
@@ -27,6 +28,7 @@ namespace BOSS.Service
         IMenuRepository _menuRepository;
         IMenuGroupRepository _menuGroupRepository;
         IUnitOfWork _unitOfWork;
+        
         public MenuService(IMenuRepository menuRepository,IMenuGroupRepository menuGroupRepository, IUnitOfWork unitOfWork)
         {
             this._menuRepository = menuRepository;
@@ -48,9 +50,9 @@ namespace BOSS.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Menu> GetAll(bool IsAdmin)
+        public IEnumerable<Menu> GetMenuByRole(int role)
         {
-            return _menuRepository.GetMulti(x=>x.IsAdmin);
+            return _menuRepository.GetMenuWithRole(role);
         }
 
         public Menu GetById(int id)
@@ -58,10 +60,10 @@ namespace BOSS.Service
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin)
-        {
-            return _menuGroupRepository.GetMulti(x=>x.IsAdmin);
-        }
+        //public IEnumerable<MenuGroup> GetMenuGroup(bool IsAdmin)
+        //{
+        //    return _menuGroupRepository.GetMulti(x=>x.IsAdmin == IsAdmin);
+        //}
 
         public void SaveChanges()
         {
@@ -71,6 +73,11 @@ namespace BOSS.Service
         public void Update(Menu model)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Menu> GetMenus()
+        {
+            return _menuRepository.GetMulti(c=>c.Id !=0);
         }
     }
 }

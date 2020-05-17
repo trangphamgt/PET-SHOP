@@ -29,7 +29,7 @@ namespace BOSS.Data
         public virtual DbSet<OrderDetail> OrderDetails { set; get; }
         public virtual DbSet<Comment> Comments { set; get; }
         public virtual DbSet<Error> Errors { set; get; }
-
+        public virtual DbSet<MenuGroup> MenuGroups { set; get; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

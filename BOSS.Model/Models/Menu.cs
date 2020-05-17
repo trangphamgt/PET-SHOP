@@ -17,10 +17,13 @@ namespace BOSS.Model.Models
         [Required]
         public string Name { set; get; }
         public string URL { set; get; }
+        public string Icon { set; get; }
         public int? DisplayOrder {set;get;}
-        public bool IsAdmin { set; get; }
-        public int? ParentId { set; get; }
+        public int? GroupId { set; get; }
         public bool Status { set; get; }
+
+        [ForeignKey("GroupId")]
+        public virtual MenuGroup MenuGroup { set; get; }
 
     }
 }

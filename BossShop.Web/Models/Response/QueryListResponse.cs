@@ -9,5 +9,7 @@ namespace BossShop.Web.Models.Response
     {
         public IEnumerable<T> Items { set; get; }
         public int Count { set; get; }
+        public int StatusCode { set; get; }
+        public bool IsError { set; get; }
     }
 }

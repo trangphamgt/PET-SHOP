@@ -10,8 +10,6 @@ using BossShop.Web.Infrastructure.Extensions;
 using BOSS.Model.Models;
 using AutoMapper;
 using BossShop.Web.Models;
-using BossShop.Web.Models.Response;
-using BOSS.Common;
 
 namespace BossShop.Web.Api
 {
@@ -24,75 +22,47 @@ namespace BossShop.Web.Api
         }
 
         [HttpPost]
-        public ApiResponse<MenuViewModel> Add(MenuViewModel model)
-        {
-           try
-            {
-                Menu menu = new Menu();
-                menu.UpdateMenu(model);
-                var result = _menuService.Add(menu);
-                _menuService.SaveChanges();
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Result = Mapper.Map<MenuViewModel>(result),
-                };
-            }catch(Exception ex)
-            {
-                LogError(ex);
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                    Message = ex.Message,
-                    IsError = true
-                };
-            }
-        }
-        [HttpGet]
-        public ApiResponse<MenuViewModel> Get(int id)
+        public MenuViewModel Add(MenuViewModel model)
         {
             try
             {
-                var result = Mapper.Map<MenuViewModel>(_menuService.GetById(id));
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Result = result
-                };
+                Menu menu = new Menu();
+                menu.UpdateMenu(model);
+
+                var res = _menuService.Add(menu);
+                _menuService.SaveChanges();
+                return Mapper.Map<MenuViewModel>(res);
             }
             catch (Exception ex)
             {
                 LogError(ex);
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                    IsError = true,
-                    Message = ex.InnerException.Message
-                };
+                return null;
             }
         }
-
-        public QueryListResponse< MenuViewModel > GetMenuByRole(int role)
+        [HttpGet]
+        public MenuViewModel Get(int id)
         {
-            IEnumerable<MenuViewModel> result = null;
-            if(role != (int)RoleEnum.Both)
+            try
             {
-                result = Mapper.Map<IEnumerable<MenuViewModel>>(_menuService.GetMenuByRole(role));
+                return Mapper.Map<MenuViewModel>(_menuService.GetById(id));
             }
-            else
+            catch (Exception ex)
             {
-                result = Mapper.Map<IEnumerable<MenuViewModel>>(_menuService.GetMenus());
+                LogError(ex);
+                return null;
             }
-            return new QueryListResponse<MenuViewModel>
-            {
-                Count = result.Count(),
-                Items = result
-            };
         }
 
-
+        public IEnumerable<MenuViewModel> GetByRole(int role)
+        {
+            var lst = _menuService.GetMenuByRole(role);
+            List<MenuViewModel> res = Mapper.Map<List<MenuViewModel>>(lst);
+            return res;
+        }
+      
+        
         [HttpPut]
-        public ApiResponse< MenuViewModel > Update(int Id, MenuViewModel model)
+        public void Update(MenuViewModel model)
         {
             try
             {
@@ -100,46 +70,28 @@ namespace BossShop.Web.Api
                 menu.UpdateMenu(model);
                 _menuService.Update(menu);
                 _menuService.SaveChanges();
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    IsError = false
-                };
             }
             catch (Exception ex)
             {
                 LogError(ex);
-                return new ApiResponse<MenuViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                    IsError = true
-                };
+
             }
         }
 
         [HttpDelete]
-        public ApiResponse< MenuViewModel > Delete(int Id)
+        public MenuViewModel Delete(int Id) 
         {
             try
             {
                 var model = _menuService.Delete(Id);
                 _menuService.SaveChanges();
                 var res = Mapper.Map<MenuViewModel>(model);
-                return new ApiResponse<MenuViewModel>
-                {
-                    Result = res,
-                    IsError = false,
-                    StatusCode = (int)HttpStatusCode.OK,
-                };
+                return res;
             }
             catch (Exception ex)
             {
                 LogError(ex);
-                return new ApiResponse<MenuViewModel>
-                {
-                    IsError = true,
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                };
+                return null;
             }
         }
     }

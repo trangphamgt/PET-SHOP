@@ -26,13 +26,11 @@ namespace BOSS.Service
     public class MenuService : IMenuService
     {
         IMenuRepository _menuRepository;
-        IMenuGroupRepository _menuGroupRepository;
         IUnitOfWork _unitOfWork;
-        
-        public MenuService(IMenuRepository menuRepository,IMenuGroupRepository menuGroupRepository, IUnitOfWork unitOfWork)
+
+        public MenuService(IMenuRepository menuRepository, IUnitOfWork unitOfWork)
         {
             this._menuRepository = menuRepository;
-            this._menuGroupRepository = menuGroupRepository;
             this._unitOfWork = unitOfWork;
         }
         public Menu Add(Menu model)
@@ -52,7 +50,7 @@ namespace BOSS.Service
 
         public IEnumerable<Menu> GetMenuByRole(int role)
         {
-            return _menuRepository.GetMenuWithRole(role);
+            return _menuRepository.GetMulti(x => x.Status && x.UserRole == role);
         }
 
         public Menu GetById(int id)
@@ -72,12 +70,14 @@ namespace BOSS.Service
 
         public void Update(Menu model)
         {
-            throw new NotImplementedException();
+            _menuRepository.Update(model);
         }
 
         public IEnumerable<Menu> GetMenus()
         {
             return _menuRepository.GetMulti(c=>c.Id !=0);
         }
+
+        
     }
 }

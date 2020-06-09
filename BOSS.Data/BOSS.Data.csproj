@@ -138,6 +138,14 @@
     <Compile Include="Migrations\202005101054302_iconmenu.Designer.cs">
       <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005261703039_last-menu.cs" />
+    <Compile Include="Migrations\202005261703039_last-menu.Designer.cs">
+      <DependentUpon>202005261703039_last-menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005271652542_lasssttttttt.cs" />
+    <Compile Include="Migrations\202005271652542_lasssttttttt.Designer.cs">
+      <DependentUpon>202005271652542_lasssttttttt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
@@ -218,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005101054302_iconmenu.resx">
       <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005261703039_last-menu.resx">
+      <DependentUpon>202005261703039_last-menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005271652542_lasssttttttt.resx">
+      <DependentUpon>202005271652542_lasssttttttt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

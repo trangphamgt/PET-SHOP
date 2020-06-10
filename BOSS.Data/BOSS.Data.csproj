@@ -66,85 +66,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\202003091515089_InitalDB.cs" />
-    <Compile Include="Migrations\202003091515089_InitalDB.Designer.cs">
-      <DependentUpon>202003091515089_InitalDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003091649327_updatename.cs" />
-    <Compile Include="Migrations\202003091649327_updatename.Designer.cs">
-      <DependentUpon>202003091649327_updatename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003091838308_addComment.cs" />
-    <Compile Include="Migrations\202003091838308_addComment.Designer.cs">
-      <DependentUpon>202003091838308_addComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003100916584_updateComment.cs" />
-    <Compile Include="Migrations\202003100916584_updateComment.Designer.cs">
-      <DependentUpon>202003100916584_updateComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003100956045_addErrorTable.cs" />
-    <Compile Include="Migrations\202003100956045_addErrorTable.Designer.cs">
-      <DependentUpon>202003100956045_addErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003101741319_updateAutial.cs" />
-    <Compile Include="Migrations\202003101741319_updateAutial.Designer.cs">
-      <DependentUpon>202003101741319_updateAutial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121631447_aaa.cs" />
-    <Compile Include="Migrations\202003121631447_aaa.Designer.cs">
-      <DependentUpon>202003121631447_aaa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003131724512_AspIdentity-Authen.cs" />
-    <Compile Include="Migrations\202003131724512_AspIdentity-Authen.Designer.cs">
-      <DependentUpon>202003131724512_AspIdentity-Authen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003221612112_changeKey.cs" />
-    <Compile Include="Migrations\202003221612112_changeKey.Designer.cs">
-      <DependentUpon>202003221612112_changeKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004261557334_update1.cs" />
-    <Compile Include="Migrations\202004261557334_update1.Designer.cs">
-      <DependentUpon>202004261557334_update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005011504387_aaagf.cs" />
-    <Compile Include="Migrations\202005011504387_aaagf.Designer.cs">
-      <DependentUpon>202005011504387_aaagf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005051804335_menugroup.cs" />
-    <Compile Include="Migrations\202005051804335_menugroup.Designer.cs">
-      <DependentUpon>202005051804335_menugroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005051812403_drop-contraint.cs" />
-    <Compile Include="Migrations\202005051812403_drop-contraint.Designer.cs">
-      <DependentUpon>202005051812403_drop-contraint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005051814192_drop-foreignkey.cs" />
-    <Compile Include="Migrations\202005051814192_drop-foreignkey.Designer.cs">
-      <DependentUpon>202005051814192_drop-foreignkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005051826382_jhdbs.cs" />
-    <Compile Include="Migrations\202005051826382_jhdbs.Designer.cs">
-      <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005071753064_releasemg.cs" />
-    <Compile Include="Migrations\202005071753064_releasemg.Designer.cs">
-      <DependentUpon>202005071753064_releasemg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005100939141_jksbjfb.cs" />
-    <Compile Include="Migrations\202005100939141_jksbjfb.Designer.cs">
-      <DependentUpon>202005100939141_jksbjfb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005101054302_iconmenu.cs" />
-    <Compile Include="Migrations\202005101054302_iconmenu.Designer.cs">
-      <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005261703039_last-menu.cs" />
-    <Compile Include="Migrations\202005261703039_last-menu.Designer.cs">
-      <DependentUpon>202005261703039_last-menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005271652542_lasssttttttt.cs" />
-    <Compile Include="Migrations\202005271652542_lasssttttttt.Designer.cs">
-      <DependentUpon>202005271652542_lasssttttttt.cs</DependentUpon>
+    <Compile Include="Migrations\202006100429104_skjnsk.cs" />
+    <Compile Include="Migrations\202006100429104_skjnsk.Designer.cs">
+      <DependentUpon>202006100429104_skjnsk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,65 +97,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003091515089_InitalDB.resx">
-      <DependentUpon>202003091515089_InitalDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003091649327_updatename.resx">
-      <DependentUpon>202003091649327_updatename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003091838308_addComment.resx">
-      <DependentUpon>202003091838308_addComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003100916584_updateComment.resx">
-      <DependentUpon>202003100916584_updateComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003100956045_addErrorTable.resx">
-      <DependentUpon>202003100956045_addErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003101741319_updateAutial.resx">
-      <DependentUpon>202003101741319_updateAutial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121631447_aaa.resx">
-      <DependentUpon>202003121631447_aaa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131724512_AspIdentity-Authen.resx">
-      <DependentUpon>202003131724512_AspIdentity-Authen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221612112_changeKey.resx">
-      <DependentUpon>202003221612112_changeKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004261557334_update1.resx">
-      <DependentUpon>202004261557334_update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005011504387_aaagf.resx">
-      <DependentUpon>202005011504387_aaagf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005051804335_menugroup.resx">
-      <DependentUpon>202005051804335_menugroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005051812403_drop-contraint.resx">
-      <DependentUpon>202005051812403_drop-contraint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005051814192_drop-foreignkey.resx">
-      <DependentUpon>202005051814192_drop-foreignkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005051826382_jhdbs.resx">
-      <DependentUpon>202005051826382_jhdbs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005071753064_releasemg.resx">
-      <DependentUpon>202005071753064_releasemg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005100939141_jksbjfb.resx">
-      <DependentUpon>202005100939141_jksbjfb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005101054302_iconmenu.resx">
-      <DependentUpon>202005101054302_iconmenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005261703039_last-menu.resx">
-      <DependentUpon>202005261703039_last-menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005271652542_lasssttttttt.resx">
-      <DependentUpon>202005271652542_lasssttttttt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006100429104_skjnsk.resx">
+      <DependentUpon>202006100429104_skjnsk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

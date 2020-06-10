@@ -7,13 +7,13 @@ namespace BOSS.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class jhdbs : IMigrationMetadata
+    public sealed partial class skjnsk : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(jhdbs));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(skjnsk));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005051826382_jhdbs"; }
+            get { return "202006100429104_skjnsk"; }
         }
         
         string IMigrationMetadata.Source

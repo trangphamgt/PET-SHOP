@@ -17,6 +17,10 @@ namespace BOSS.Data.Migrations
 
         protected override void Seed(BOSS.Data.BossDbContext context)
         {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new BossDbContext()));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new BossDbContext()));
 
@@ -26,7 +30,7 @@ namespace BOSS.Data.Migrations
                 UserName = "trangpham",
                 Email = "trangphamutc01@gmail.com",
                 EmailConfirmed = true,
-               
+
             };
             manager.Create(user, "123456$");
             if (!roleManager.Roles.Any())

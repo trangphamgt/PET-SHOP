@@ -59,6 +59,8 @@ namespace BossShop.Web.Infrastructure.Extensions
             menu.URL = menuViewModel.URL;
             menu.Status = menuViewModel.Status;
             menu.Icon = menuViewModel.Icon;
+            menu.UserRole = menuViewModel.UserRole;
+            menu.DisplayOrder = menuViewModel.DisplayOrder;
         }
         public static void UpdateTag(this Tag tag, TagViewModel tagVm)
         {

@@ -40,7 +40,7 @@ namespace BOSS.Service
 
         public Menu Delete(int id)
         {
-            throw new NotImplementedException();
+            return _menuRepository.Delete(id);
         }
 
         public Menu Delete(Menu model)

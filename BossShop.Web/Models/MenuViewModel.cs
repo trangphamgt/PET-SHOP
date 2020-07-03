@@ -13,7 +13,7 @@ namespace BossShop.Web.Models
         public string Icon { set; get; }
         public int? DisplayOrder { set; get; }
         public int GroupId { set; get; }
-        public bool IsAdmin { set; get; }
+        public int UserRole { set; get; }
         public virtual MenuGroupViewModel MenuGroup { set; get; }
         public bool Status { set; get; }
     }

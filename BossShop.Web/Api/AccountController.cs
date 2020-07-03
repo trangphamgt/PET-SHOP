@@ -20,16 +20,16 @@ namespace BossShop.Web.Api
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IAccountService _accountService;
+        
+
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            this._accountService = accountService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -38,9 +38,9 @@ namespace BossShop.Web.Api
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -55,7 +55,6 @@ namespace BossShop.Web.Api
                 _userManager = value;
             }
         }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -70,9 +69,7 @@ namespace BossShop.Web.Api
             else
             {
                 var userName = model.Email;
-                if(model.Email.IndexOf("@") > 0) {
-                   userName =  _accountService.GetUserNameByEmail(model.Email);
-                }
+                
                 var result = SignInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
                 if (result.Result == SignInStatus.Success)
                     return model;

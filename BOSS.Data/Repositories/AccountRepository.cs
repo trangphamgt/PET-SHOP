@@ -1,5 +1,6 @@
 ﻿using BOSS.Data.Infrastructure;
 using BOSS.Model.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,6 @@ namespace BOSS.Data.Repositories
         {
             return DbContext.Users.Where(c => c.Email == email).First().UserName;
         }
+        
     }
 }

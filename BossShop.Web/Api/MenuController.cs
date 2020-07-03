@@ -53,11 +53,22 @@ namespace BossShop.Web.Api
             }
         }
 
-        public IEnumerable<MenuViewModel> GetByRole(int role)
+        public IEnumerable<MenuViewModel> GetByRole(int role = 0)
         {
-            var lst = _menuService.GetMenuByRole(role);
+            var lst = new List<Menu>();
+            if (role !=0 )
+            {
+                lst = _menuService.GetMenuByRole(role).ToList();
+               
+            }
+            else
+            {
+                lst = _menuService.GetMenus().ToList();
+                
+            }
             List<MenuViewModel> res = Mapper.Map<List<MenuViewModel>>(lst);
             return res;
+
         }
       
         

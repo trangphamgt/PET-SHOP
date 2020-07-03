@@ -21,7 +21,7 @@ namespace BossShop.Web.Api
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IAccountService _accountService;
-        public AccountApiController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService, ErrorService errorService) : base(errorService)
+        public AccountApiController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAccountService accountService, IErrorService errorService) : base(errorService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,7 +38,6 @@ namespace BossShop.Web.Api
                 _signInManager = value;
             }
         }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -50,44 +49,31 @@ namespace BossShop.Web.Api
                 _userManager = value;
             }
         }
-        public ApiResponse< LoginViewModel > Login(LoginViewModel model)
+        [HttpPost]
+        public LoginViewModel Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
+           var userName = model.Email;
+            
+            if (model.Email.IndexOf("@") > 0)
             {
-
-                return new ApiResponse<LoginViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                    IsError = true
-
-                };
+                userName = _accountService.GetUserByEmail(model.Email);
+                var user = _userManager.FindByEmailAsync(userName);
+                var roles = _userManager.GetRolesAsync(user.Id.ToString());
             }
-            else
+            var result = SignInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
+            if (result.Result == SignInStatus.Success)
             {
-                var userName = model.Email;
-                if (model.Email.IndexOf("@") > 0)
-                {
-                    userName = _accountService.GetUserNameByEmail(model.Email);
-                }
-                var result = SignInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, false);
-                if (result.Result == SignInStatus.Success)
-                    return new ApiResponse<LoginViewModel>
-                    {
-                        StatusCode = (int) HttpStatusCode.OK,
-                        IsError = false,
-                        Result = model
-
-                    };
-                       
-                else return new ApiResponse<LoginViewModel>
-                {
-                    StatusCode = (int)HttpStatusCode.BadRequest,
-                    IsError = true
-
-                };
-
+                model.UserName = userName;
+                return model;
             }
+                    
+
+            else return null;
+
+            
         }
+       
+
         public async Task<VerifyCodeViewModel> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login

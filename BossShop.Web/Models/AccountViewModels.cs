@@ -60,6 +60,10 @@ namespace BossShop.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string UserName { get; set; }
+        public string Roles { get; set; }
+
     }
 
     public class RegisterViewModel

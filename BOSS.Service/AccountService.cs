@@ -1,5 +1,6 @@
 ﻿using BOSS.Data.Infrastructure;
 using BOSS.Data.Repositories;
+using BOSS.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BOSS.Service
 {
     public interface IAccountService
     {
-        string GetUserNameByEmail(string email);
+        string GetUserByEmail(string email);
     }
     public class AccountService : IAccountService
     {
@@ -22,9 +23,10 @@ namespace BOSS.Service
             this._accountRepository = accountRepository;
             this._unitOfWork = unitOfWork;
         }
-        public string GetUserNameByEmail(string email)
+        public string GetUserByEmail(string email)
         {
             return _accountRepository.GetUserNameByEmail(email);
         }
+       
     }
 }
